@@ -1,0 +1,5 @@
+package com.korea.product.model;
+
+public class ProductEntity {
+
+}

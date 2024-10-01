@@ -1,0 +1,12 @@
+package com.korea.user.service;
+
+import com.korea.user.presistence.UserRepository;
+
+public class UserService {
+
+	private static UserRepository repository;
+	
+	public List<UserEntity> create(UserEntity entity) {
+		
+	}
+}

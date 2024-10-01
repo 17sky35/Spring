@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.example.demo.ㅔㄱㄷ냔ㅅ둧ㄷ&apos; to &apos;com.example.demo.presistence&apos;&#x0D;&#x0A;- Original project: &apos;demo&apos;&#x0D;&#x0A;- Original element: &apos;demo/src/main/java/com.example.demo.ㅔㄱㄷ냔ㅅ둧ㄷ&apos;&#x0D;&#x0A;- Renamed element: &apos;demo/src/main/java/com.example.demo.presistence&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.example.demo.ㅔㄱㄷ냔ㅅ둧ㄷ&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.example.demo.ㅔㄱㄷ냔ㅅ둧ㄷ" name="com.example.demo.presistence" qualified="false" references="true" stamp="1727420752510" textual="false" version="1.0"/>
+</session>

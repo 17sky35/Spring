@@ -1,0 +1,10 @@
+package com.example.demo.presistence;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+//JpaRepository<T, ID> jpa에서 제공하는 인터페이스
+//T : 테이블에 매핑될 Entity클래스
+//ID : 기본키의 타입
+public interface TodoRepository extends JpaRepository<TodoEntity, String> {
+	
+}

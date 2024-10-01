@@ -1,0 +1,83 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.TodoEntity;
+import com.example.demo.presistence.TodoRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+//@Component 어노테이션이 붙은 클래스는 Bean으로 만들어준다.
+//@Service 컴포넌트는 @Component의 자식 컴포넌트
+//스프링이 @Service도 찾아서 Bean으로 만들어준다.
+
+//@Component의 자식 컴포넌트 종류
+//@Service
+//@Repository
+//@Controller
+//@RestController
+//컴포넌트를 구분함으로 써 클래스의 용도를 좀 더 구체적으로 구분할 수 있다.
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class TodoService {
+	
+	//TodoRepository 생성자 주입하기
+	private final TodoRepository repository;
+	
+	//메서드형태로 비즈니스로직을 구현
+	public String testService() {
+		//TodoEntity생성
+		TodoEntity entity = TodoEntity.builder().title("My first todo item").build();
+		//TodoEntity 저장
+		//save() : insert
+		repository.save(entity);
+		//TodoEntity 검색
+		//findById(entity.getId()) : 기본키를 이용해 db에 저장된 TodoEntity찾기
+		TodoEntity savedEntity = repository.findById(entity.getId()).get();
+		return savedEntity.getTitle();
+	}
+	
+	//Controller에서 넘어온 데이터를 검증하고 Todo테이블에 저장
+	public List<TodoEntity> create(TodoEntity entity){
+		//매개변수로 넘어온 Entity가 유효한지 검사
+		if(entity == null) {
+			log.warn("Entity cannot be null");
+			throw new RuntimeException("Entity cannot be null");
+		}
+		
+		//userId가 안넘어왔을 때
+		if(entity.getUserId()==null) {
+			log.warn("Unknown user");
+			throw new RuntimeException("Unknown user");
+		}
+		
+		//넘어온 Entity에 문제가 없을 때 DB에 추가한다.
+		repository.save(entity);
+		
+		//{}는 Slf4j에서 제공하는 플레이스홀더로, 두 번째 매개변수로 전달된 entity.getId()값이 대잆되어 출력된다.
+		log.info("Entity Id : {} is saved",entity.getId());
+
+		//넘어온 entity로부터 userId를 가지고 DB에서 조회된 내용을 List에 묶어서 반환
+		return repository.findByUserId(entity.getUserId());
+				
+	}
+	
+	private void validate(TodoEntity entity) {
+		if(entity == null) {
+			log.warn("Entity cannot be null");
+			throw new RuntimeException("Entity cannot be null");
+		}
+		
+		//userId가 안넘어왔을 때
+		if(entity.getUserId()==null) {
+			log.warn("Unknown user");
+			throw new RuntimeException("Unknown user");
+		}
+	}
+	
+}

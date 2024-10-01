@@ -1,0 +1,5 @@
+package com.korea.product.presistence;
+
+public interface ProductRepository {
+
+}

@@ -1,0 +1,22 @@
+package com.korea.product.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.korea.product.dto.ProductDTO;
+import com.korea.product.model.ProductEntity;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class ProductService {
+
+	private final ProductRepository = repository;
+	
+	public List<ProductDTO> addProduct (ProductEntity entity){
+		
+	};
+	
+}

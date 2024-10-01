@@ -1,0 +1,5 @@
+package com.korea.user.model;
+
+public class UserEntity {
+
+}

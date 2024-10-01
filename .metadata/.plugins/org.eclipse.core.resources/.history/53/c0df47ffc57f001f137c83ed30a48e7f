@@ -1,0 +1,45 @@
+package com.korea.product.service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.korea.product.dto.ProductDTO;
+import com.korea.product.model.ProductEntity;
+import com.korea.product.presistence.ProductRepository;
+
+import lombok.RequiredArgsConstructor;
+
+
+@Service
+@RequiredArgsConstructor
+public class ProductService {
+
+	private final ProductRepository repository;
+	
+	//상품추가
+//	public ProductDTO addProduct(ProductDTO productDTO) {
+//		//넘어온 DTO를 Entity로 변환
+//		ProductEntity entity = ProductDTO.toEntity(productDTO);
+//		//Entity를 DB에 추가하고 DTO로 변환하여 반환
+//		return new ProductDTO(repository.save(entity));
+//	}
+	
+	//상품조회
+	public List<ProductDTO> getFilteredProducts(Double minPrice,String name){
+		if(minPrice == null && name == null) {
+			return repository.findAll().stream().map(ProductDTO::new).collect(Collectors.toList());
+		}else if(name == null) {
+			return repository.findBy
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+}
