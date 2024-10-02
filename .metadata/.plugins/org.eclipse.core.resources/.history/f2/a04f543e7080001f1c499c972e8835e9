@@ -1,0 +1,26 @@
+package com.example.demo.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+//스프링에서 해당 클래스를 설정파일로 인식하고 Bean으로 등록한다.
+@Configuration			//implements : 구현
+public class WebMvcConfig implements WebMvcConfigurer {
+	//WebMvcConfigurer
+	//스프링 MVC 동작을 커스터마이징 할 때 사용된다.
+	//스프링은 기본적으로 MVC동작을 설정해주지만, 때로는 프로젝트 요구사항에 맞게 특정 기능을 추가하거나
+	//수정해야 할 때 WebMvcConfigurer를 구현하여 원하는 설정을 적용할 수 있다.
+	//주요 기능
+	//CORS 설정
+	//
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**")
+		.allowedOrigins("http://localhost:3000")
+		.allowedOrigins("GET","POST","PUT","DELETE")
+		.allowedOrigins("*")
+		.allowCredentials(true)
+	}
+	
+}

@@ -13,18 +13,19 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class Coding {
 
+	//1. 필드 주입
 //	@Autowired
 //	private Computer computer;
 	//final이나 @NonNull붙이고
 	private final Computer computer;
-
-	// 생성자 주입(Constructor injection)
+	
+	//2. 생성자 주입(Constructor injection)
 	// 생성자가 호출되는 시점 -> 객체가 만들어질 때 매개변수에 객체가 주입이 된다.
 //	public Coding(Computer computer) {
 //		this.computer = computer;
 //	}
 
-	// setter주입(setter injection)
+	//3. setter주입(setter injection)
 //	@Autowired
 //	public void setComputer(Computer computer) {
 //		this.computer = computer;

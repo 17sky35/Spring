@@ -3,6 +3,7 @@ package com.korea.product.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,7 @@ public class ProductController {
    }
 
    //상품조회
+   //localhost:9090/api/products?minPrice=900&name=""
    @GetMapping
    public ResponseEntity<List<ProductDTO>> getFilteredProducts(
            @RequestParam(value = "minPrice", required = false) Double minPrice,
@@ -47,15 +49,27 @@ public class ProductController {
    }
    
    //수정하기
+ //localhost:9090/api/products/1
    @PutMapping("/{id}")
-   public ResponseEntity<ProductDTO> updateProduct(@PathVariable int id,@RequestBody ProductDTO dto){
-	   ProductDTO update = service.updateProduct(id, dto);
-	   if(update != null) {
-		   return ResponseEntity.ok(update);
+   public ResponseEntity<?> updateProduct(@PathVariable int id,@RequestBody ProductDTO dto){
+	   ProductDTO u_dto = service.updateProduct(id, dto);
+	   if(u_dto != null) {
+		   return ResponseEntity.ok().body(u_dto);
 	   }
-	   return ResponseEntity.notFound().build();
+	   return ResponseEntity.badRequest().body("업데이트가 안됐습니다.");
    }
    
+   //삭제하기
+   //localhost:9090/api/products/1
+   @DeleteMapping("/{id}")
+   public ResponseEntity<?> deleteProduct(@PathVariable int id){
+	   boolean isdelete = service.deleteProduct(id);	   
+	   if(isdelete) {		   
+		   return ResponseEntity.ok("삭제");
+	   }
+	   return ResponseEntity.badRequest().body("실패");
+	     
+   }
    
 }
 

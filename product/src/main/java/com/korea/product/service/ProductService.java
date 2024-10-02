@@ -73,9 +73,21 @@ public class ProductService {
 		return products.stream().map(ProductDTO::new).collect(Collectors.toList());
 	}
 	
-	//수정하기
+//  수정하기
+//  localhost:9090/api/products/1
+//  Request Body에 담아서 Controller전달
+//  {
+//	   "id":1,
+//	   "name":"수정할 이름",
+//	   "description":"수정할 내용",
+//	   "price":수정할 가격
+//  }
 	public ProductDTO updateProduct(int id, ProductDTO dto) {
+		//DB에서 id에 해당하는 데이터가 있는지 조회
+		//SELECT * FROM product WHERE id=?
 		Optional<ProductEntity> original = repository.findById(id);
+		
+		//있으면 매개변수로 넘어온 dto에 있는 내용으로 기존의 내용을 갱신
 		if(original.isPresent()) {
 			ProductEntity entity = original.get();
 			entity.setName(dto.getName());
@@ -84,7 +96,20 @@ public class ProductService {
 			repository.save(entity);
 			return new ProductDTO(entity);
 		}
-		return null;		
+		return null;
+	}
+	
+	//삭제하기
+	public boolean deleteProduct(int id) {
+		//넘어온 id를 통해 DB에 데이터가 있는지 부터 검증
+		//SELECT * FROM products WHERE id = 1;
+		Optional<ProductEntity> original = repository.findById(id);
+		if(original.isPresent()) {
+			//DELETE FROM products WHERE id=1;
+			repository.deleteById(id);
+			return true;
+		}
+		return false;
 	}
 	
 	

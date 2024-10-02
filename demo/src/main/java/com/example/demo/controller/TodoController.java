@@ -149,7 +149,7 @@ public class TodoController {
 			String temporaryUserId = "temporary-user"; //임시 유저 아이디
 			//1. 엔티티로 변경
 			TodoEntity entity = TodoDTO.toEntity(dto);
-			//2. 임시 유저 아이디 설정
+			//2. 임시 유저 아이디 설정			
 			entity.setUserId(temporaryUserId);
 			//3. 서비스를 이용해 entity를 삭제
 			List<TodoEntity> entities = service.delete(entity);

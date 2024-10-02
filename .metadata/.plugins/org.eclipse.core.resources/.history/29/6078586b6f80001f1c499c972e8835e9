@@ -1,0 +1,12 @@
+package com.example.demo.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+//스프링에서 해당 클래스를 설정파일로 인식하고 Bean으로 등록한다.
+@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+						//implements : 구현
+	private final long MAX_AGE_SECS = 3600;
+	
+}
