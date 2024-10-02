@@ -209,8 +209,18 @@ HTTP 메서드 : PUT
 리소스 : /{id}
 
 
+상품 삭제하기
+id을 통해서 db에 들어있는 데이터 삭제하기
+ProductService
+deleteProduct() 메서드
+-id를 통해 데이터가 존재하면 삭제하기
+-삭제가 잘됐으면 true
+-삭제가 잘 안됐으면 false를 반환
 
-
+ProductController
+-HTTP 메서드 : DELETE
+-메서드명 : deleteProduct
+-리소스 : /{id}
 
 
 
