@@ -1,5 +1,0 @@
-package com.korea.product.controller;
-
-public class ProductController {
-
-}
