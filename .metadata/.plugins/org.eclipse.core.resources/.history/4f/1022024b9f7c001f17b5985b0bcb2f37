@@ -1,5 +1,0 @@
-package com.example.demo.presistence;
-
-public interface TodoRepository {
-
-}
