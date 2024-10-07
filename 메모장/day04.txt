@@ -1,0 +1,157 @@
+1. IOC(Inversion Of Controll) : 제어 역전
+클래스 앞에 @Component, @Service, @RestController, @Repository 어노테이션이 붙은 클래스를 스프링부트가
+애플리케이션이 실행될 때 먼저 Bean으로 만들어서 객체 컨테이너에 singleton 방식으로 저장해놓는다.
+
+List에 저장해야 하는 Entity -> 싱글톤 패턴으로 만들면 안됨
+
+2. DI(Dependency Injection) : 의존성 주입
+자바에서는 클래스에 속해있는 메서드를 사용하기 위해서 객체를 직접 생성했었다.
+부트에서는 만들어진 Bean을 가져다가 사용하는 형태
+
+1. 필드 주입
+@Component -> Battery를 Bean으로 만들어서 컨테이너에 저장
+public class Battery{
+	cap = 85;
+}
+
+public class Toy{
+	@Autowired 순환참조만 주의해서 사용하면 매우 편하다.
+	Battery battery; -> Battery Bean을 주입
+
+	System.out.println("battery : " + battery.cap + "%");
+}
+
+2. 생성자 주입
+@Component
+public class Battery{
+	cap = 85;
+}
+
+public class Toy{	
+	public Toy(Battery battery){
+		this.battery = battery;
+	}
+	System.out.println("battery : " + battery.cap + "%");
+}
+
+
+레이어드 아키텍처
+프로젝트를 레이어를 구성해서 만드는것
+
+표현계층
+클라이언트의 요청과 맞닿는 부분이다.
+**Controller라고 이름을 짓는 경우가 많다	DTO
+@Controller
+@RestController
+
+서비스계층
+비즈니스 로직을 설계하는 계층		MODEL
+**Service
+
+영속계층
+DB와 맞닿는 부분				ENTITY
+**Repository
+
+
+-☆★-----☆★---☆★----객체 지향 설계 5대 원칙 - SOLID-☆★-----☆★-----☆★-☆★-☆
+1. 단일 책임원칙(SRP,Single Responsibility Principle)				ㅣ
+- 하나의 메서드는 하나의 책임만 가져야 한다.					ㅣ
+									ㅣ
+2. 개방 폐쇄 원칙(OCP,Open-Closed Principle)					★	
+- 상속에는 Open, 변경에는 Close해야한다.					☆	
+- 코드를 변경할 일이 있으면 변경하지말고, 웬만하면 상속을 통해서 변경해라		ㅣ		
+									★		
+3. 리스코프 치환 원칙(LSP,Liskov Subtitution Principle)				ㅣ	
+- 같은 조상의 다른 클래스로 바꿔도 동작해야 한다.(다형성)				☆	
+									ㅣ				
+Spring Data JPA								★				
+-> Hibernate를 다른 구현체로 바꿔도 문제가 생기지 않는다.			ㅣ				
+									ㅣ				
+slf4j									ㅣ	
+-> Logback, Log4j같이 다른 구현체로 바꿔도 문제가 생기지 않는다.			★				
+									☆		
+4. 인터페이스 분리 원칙(ISP, Interface Segregation Principle)			★			
+- 유사한 인터페이스가 있더라도 목적이 다르면 분리해야한다.			ㅣ			
+									★
+5. 의존관계 역전 원칙(DIP, Dependency Inversion Principle)			ㅣ			
+- 추상화에 의존한 코드를 작성해야 한다.					☆				
+- 코드가 너무 구체적이면 변경에 불리하다.					ㅣ			
+-☆★-----☆★---☆★----객---☆★-☆★----☆★-☆★----☆★-☆★--☆★-----☆★-----☆
+
+create todo 구현
+-> todo 아이템을 데이터베이스에 추가하는 기능
+
+영속레이어 > 서비스레이어 > 표현레이어 순으로 구현
+
+
+
+update todo 구현
+
+여속계층
+TodoRespositoy
+save(), findByUserId();
+
+서비스계층
+TodoService에 update()메서드를 작성
+
+
+
+DeleteTodo 기능 구현하기
+- Todo를 삭제하기 위한 기능
+
+영속계층
+TodoRepository의 delete(),findByUserld()메서드를 사용할 것
+
+서비스계층 
+delete()메서드 만들기
+
+
+
+조회
+GET localhost:9090/todo
+
+추가
+POST localhost:9090/todo
+
+수정
+PUT localhost:9090/todo
+
+삭제
+DELETE localhost:9090/todo
+
+
+
+
+.map(TodoDTO::new) -> .map(entity -> new TodoDTO(entity));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

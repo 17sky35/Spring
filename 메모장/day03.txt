@@ -1,0 +1,128 @@
+JPA에서 관리되는 자바 객체를 엔티티(Entity)라고 한다.
+
+
+
+
+
+
+
+1. start.spring.ip 프로젝스 생성
+2. eclipse에 import
+3. 스프링의 핵심 개념 loC, DI
+
+객체를 우리가 만드는게 아님(부트가 알아서 만들어줌) -> loC
+
+스프링에 객체를 만들어달라고 시키는법
+클래스 앞에 컴포넌트 어노테이션을 붙힘
+@Component public class Car{};
+
+@ComponentScan을 통해서 @Component가 붙어있는 클래스를 전부 객체로 만들어서 컨테이너 저장한다.
+
+의존성 주입
+객체가 필요한 곳에 직접 넣는게 아니라
+컨테이너에 저장해놓은 객체를 주입을 시키는 것 
+
+1. 필드 주입
+주입이 필요한 곳에 @Autowired -> 편한데 순환참조가 일어날 수 있다.
+
+2. 생성자 주입
+생성자를 만들고 주입이 필요한 필드를 매개변수로 받아서 주입
+
+3. setter주입 -> 거의 안쓴다
+setter를 통해서 객체를 주입
+
+@Component
+public class Battery{ -> 객체 컨테이너에 battery 객체가 저장됨
+     int charge = 90;
+}
+
+@Component
+public class Toy{ -> 객체 컨테이너에 toy객체가 저장됨
+     Battery battery; -> 배터리 객체가 필요함
+}
+toy.battery -> null;
+
+@Component
+public class Toy{ -> 객체 컨테이너에 toy객체가 저장됨
+     @Autowired -> 필드주입
+     Battery battery; -> 배터리 객체가 필요함
+}
+@Autowired -> 필드주입시
+toy.battery -> 90;
+
+@Component
+public class Toy{ -> 객체 컨테이너에 toy객체가 저장됨
+     Battery battery; -> 배터리 객체가 필요함
+
+     puvlic Toy(Battery battery){ -> 생성자 주입
+          this.battery = battery;
+     }
+}
+생성자 주입해도 결과는 toy.battery -> 90;
+
+Gradle
+자동화 빌드툴
+플로그인
+라이브러리 설치 -> 어떤 버전의 어떤 라이브러리를 설치하겠다
+Gradle이 저장소로 가서 설치를 해준다.
+프로젝트버의 버전관리
+
+Lombok
+어노테이션으로 코딩에 필요한 코드를 대신만들어준다.
+@Getter -> getter 메서드 만들어
+@Setter -> Setter 메서드 만들어줌
+@Builder -> 빌더패턴 사용할 수 있게 해줌
+장점
+생성자 오버로딩을 줄일 수 있고
+객체를 단계적으로 생성할 수 있다.
+@Data -> getter/setter,toString,EqualandHashCode메서드를 사용 가능
+@NoArgsConstructor -> 기본생성자
+@AllArgsConstructor -> 모든 필드를 매개변수로 갖는 생성자
+@RequireArgsConstructor -> @NonNull,final로 선언된 필드만 매개변수로 갖는 생성자
+@ToString -> toString 오버라이딩
+
+주소요 요청 ->  json데이터 받음
+
+컨트롤러 -> 서비스 -> 영속 -> DB -> 영속 -> 서비스 -> 컨트롤러 -> 우리한테 옴
+
+
+
+
+레이어드 아키텍처 		 		MVC 패턴
+소프트웨어 전반에 계층을 나눔		표현계층에서 주로 사용
+표현,서비스,영속계층			Model,View,Controller
+기능별로 책임의 분리			UI처리와 데이터의 흐름만 분리
+계층별 의존성 최소화			
+
+계층간 상호작용을 통해 데이터가 흐름 Controller 가 입력을 받아 Model
+				과 View간의 흐름을 제어
+
+싱글톤 패턴
+객체를 한번만 만들어놓고 계속 갖다 쓰겠다
+
+스프링에서 Bean으로 만드는것들은 다 싱글톤으로 만들어진다.
+메모리에 딱 1번만 올라가게 되고 우리는 만들어진것을 사용한다.
+
+서비스 개발 실습
+POST로 요청했을 때  CREATE REST API 개발
+GET으로 요청했을 때 RETRIEVE(검색) REST API 개발
+UPDATE로 요청했을 때 UPDATE REST API 개발
+DELETE로 요청했을 때 DELETE REST API 개발
+
+영속계층 -> 서비스계층 -< 표현계층 순으로 구현
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
