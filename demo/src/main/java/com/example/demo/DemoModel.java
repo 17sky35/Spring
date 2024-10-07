@@ -12,5 +12,4 @@ public class DemoModel {
 	
 	@NonNull
 	String id;
-	
 }

@@ -5,12 +5,11 @@ import org.springframework.stereotype.Component;
 
 //노트북
 @Component
-@Qualifier("laptop")
-public class Laptop implements Computer{
-	
+@Qualifier("Laptop")
+public class Laptop implements Computer1{
+
 	@Override
 	public int getScreenWidth() {
-		// TODO Auto-generated method stub
 		return 1600;
 	}
 }

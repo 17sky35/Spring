@@ -5,13 +5,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("desktop") @Primary 
-//default값으로 사용할 클래스에 @Primary 어노테이션을 붙인다.
-public class Desktop implements Computer{
-
+@Qualifier("desktop") @Primary
+public class Desktop implements Computer1{
 	@Override
 	public int getScreenWidth() {
-		// TODO Auto-generated method stub
 		return 1920;
 	}
 }
