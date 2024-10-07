@@ -1,0 +1,74 @@
+IOC(Inversion Of Controll) : 제어의 역전
+
+원래는 우리가 객체를 만들고 사용
+
+객체로 만들고싶은 클래스에 @RestController, @Repository, @Service, @Componet 어노테이션을
+앞에 붙히면 애플리케이션을 실행할 때 스프링이 메모리에 객체를 다 올려준다.
+
+객체 컨테이너라고 하는 곳에 Map 형태로 저장한다.
+
+내가 필요한 곳에 객체를 주입시켜주는 행위를 의존성 주입 (Dependency Injection)
+
+1.필드 주입
+@Autowired
+Computer computer;
+
+2.생성자 주입
+public Coding(Computer computer){
+	this.computer=computer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
