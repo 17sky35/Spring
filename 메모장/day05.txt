@@ -1,0 +1,239 @@
+Todo 서비스를 만들어봤다
+
+CRUD
+
+요청시
+Request -> Controller -> Service -> Repository -> DB
+
+조회	@Getmapping f(){}
+ㄴ 전체조회
+ㄴ 특정유저가 작성한 내용만 조회
+추가	@PostMapping f(){}
+수정	@PutMapping f(){}
+삭제	@DeleteMapping f(){}
+
+JPA가 메서드의 이름을 읽어서 쿼리문을 생성을 해준다.
+
+findBy : 특정 조건에 맞는 데이터를 조회
+countBy : 특정 조건에 맞는 데이터의 개수를 조회
+deleteBy : 특정 조건에 맞는 데이터를 삭제
+existsBy : 특정 조건에 맞는 데이터가 존재하는지 여부를 확인
+
+메서드명에 다양한 조건가를 함께 사용할 수 있다.
+And : 두 조건을 모두 만족하는 데이터 조회
+Or : 두 조건 중 하나라도 만족하는 데이터 조회
+Between : 두 값 사이에 있는 데이터 조회
+Less Than / Greater Than : 특정 값보다 작은 또는 큰 데이터 조회
+Like : 부분 일치 검색 
+
+-userName이 "John"인 사람 찾기
+List <User> findByUserName(String name);
+
+-나이가 30보다 많은 사용자 차기
+List<User> findByAgeGreaterThan(int age);
+
+-이름이 "john"이고 나이가 30보다 많은 사용자 찾기
+List<User> findByUsernameAndAgeGreaterThan(String name, int age)
+
+-이름이 "john"이거나 나이가 30보다 많은 사용자 찾기
+List<User> findByUsernameOrAgeGreaterThan(String name, int age)
+
+
+
+응답
+DB -> Repsoitory -> Setvice -> Controller -> Requset
+
+쿼리문 대신에 JpaRepository가 메서드를 제공한다
+
+추가,수정 : save()
+조회 : findAll(), findBy**()
+삭제 : delete()
+
+
+
+---------------------------------------------------실습1-----------------------------------------------------
+프로젝트 생성
+group : com.korea
+artifact : user
+
+필요라이브러리
+Spring Web
+H2
+lombok
+Spring Data JPA
+
+이클립스에 import하기
+
+Entity,DTO -> persistence -> Service -> Controller
+
+com.korea.user.model 패키지 생성
+-UserEntity클래스 생성하기
+-id,name,email 필드를 갖는다.
+-매핑되는 테이블이름은 users
+-id는 기본키이고 @GeneratedValue(strategy = GenerationType.AUTO) 로 값을 자동생성
+
+com.korea.user.dto 패키지 생성
+-UserDTO 클래스 생성하기
+-id,name,email 필드를 갖는다.
+-DTO에서 Entity,Entitiy에서 DTO로 변환하는 기능을 갖고있다.
+
+com.korea.user.persistence 패키지 생성하기
+-UserRepository인터페이스 생성하기
+-JpaRepository 상속받기
+
+유저 생성하기
+-사용자를 생성하는 API만들기
+
+com.korea.user.service 패키지 만들지
+-UserService클래스 생성하기
+-사용자를 생성하고 create메서드 생성하기
+-생성하고 추가가 잘됐는지 리스트를 반환한다.
+
+com.korea.user.controller패키지 만들기
+-UserContoller클래스 생성하기
+-HTTP 메서드 : POST
+-메서드명 : createUser
+-사용자에게 추가하기 위한 이름과 이메일을 받아 추가한다.
+
+모든 사용자 조회
+-모든 사용자를 조회할 수 있는 API 만들기
+
+UserService에 getAllUsers()메서드 만들기
+
+UserController
+-HTTP메서드 : get
+-메서드명 : getAllusers()
+
+이메일을 통해 사용자 검색하기
+UserReposity
+-findByEmail()
+
+UserService
+-getUserByEmail()
+-UserDTO로 반환
+
+UserController
+HTTP메서드 : GET
+메서드명 : getUserByEmail()
+리소스 : /{email}
+
+ID를 통해 이름과 이메일 수정하기
+
+UserService
+-updateUser()
+-Optional로 ID를 통해 DB에서 사용자를 찾는다.
+-사용자가 존재할 경우 업데이트 로직을 실행
+-수정이 잘 됐는지 전체 조회하는 메서드를 반환한다.
+
+UserController
+-HTTP메서드 : PUT
+메서드명 : updateUser
+
+UserService
+메서드명 deleteUser
+삭제성공시 true, 실패시 false를 반환한다
+
+UserController
+HTTP 메서드 : DELETE
+메서드명 : deleteUser
+리소스 : /{id}
+
+삭제 잘 되면 "User deleted successfully"
+삭제 잘 안되면 404상태 만들고 "User not fount with id" + id
+
+
+
+---------------------------------------------------실습2-----------------------------------------------------
+
+상품관리 시스템 만들기
+- 제품의 정보를 관리하는 기능을 갖는 API만들기
+
+프로젝트 생성하기
+group : com.korea
+artifact : product
+
+필요 라이브러리
+Spring web
+H2
+Lombok
+Spring Data JPA
+
+
+ProductEntity
+-id,name,description,price 를 갖는다
+-id는 기본키로 설정한다.
+-매핑되는 테이블은 products로 한다
+
+ProductDTO
+-클라이언트와 데이터 교환을 위한 ProductDTO클래스
+-id,name,description,price를 필드로 갖는다.
+-Entity -> DTO, DTO -> Entity로 변환하는 기능을 갖는다.
+
+상품 추가하기
+ProductService
+-addProduct()메서드 만들기
+-ProductDTO로 반환
+
+ProductController
+HTTP 메서드 : POST
+메서드명 : addProduct()
+-ResponseEntity에 반환받은 ProductDTO 응답바디에 실어서 보내기
+
+
+
+상품 조회하기
+ProductService
+-getFilteredProducts(Double minPrice,String name)
+-반환형 List<ProductDTO>
+-매개변수에 아무것도 안들어왔을 때 전체 조회
+-minPrice가 있으면 mimPrice금액 이상 제품들만 조회
+-name에 값이 있으면 name을 포함하는 제품들만 조회
+-minPrice랑 name값이 같이들어오면 minPrice이상면서 name값을 포함하는 제품조회
+
+ProductController
+HTTP메서드 : GET
+메서드명 getFilteredProducts()
+
+
+상품 수정하기
+id를 통해서 제품의 내용 수정하기
+ProductService
+-updateProduct()
+-DB에 들어있는지 검증을 먼저 한다음에
+-있으면 수정하려는 값으로 내용을 변경하고 반환
+-없으면 그냥 null반환
+
+ProductController
+HTTP 메서드 : PUT
+메서드명 : updateProduct()
+리소스 : /{id}
+
+
+상품 삭제하기
+id을 통해서 db에 들어있는 데이터 삭제하기
+ProductService
+deleteProduct() 메서드
+-id를 통해 데이터가 존재하면 삭제하기
+-삭제가 잘됐으면 true
+-삭제가 잘 안됐으면 false를 반환
+
+ProductController
+-HTTP 메서드 : DELETE
+-메서드명 : deleteProduct
+-리소스 : /{id}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
