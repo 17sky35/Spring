@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.example.demo.service.UserService"/>
-    <fullyQualifiedTypeName name="com.example.demo.dto.ResponseDTO"/>
     <fullyQualifiedTypeName name="com.example.demo.model.UserEntity"/>
     <fullyQualifiedTypeName name="java.time.Instant"/>
     <fullyQualifiedTypeName name="java.time.temporal.ChronoUnit"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="org.apache.catalina.filters.CorsFilter"/>
     <fullyQualifiedTypeName name="org.springframework.web.filter.CorsFilter"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </qualifiedTypeNameHistroy>

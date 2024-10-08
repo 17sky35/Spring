@@ -1,5 +1,0 @@
-package com.korea.user.presistence;
-
-public class UserRepository {
-
-}

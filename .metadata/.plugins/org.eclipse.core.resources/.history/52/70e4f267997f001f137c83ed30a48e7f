@@ -1,8 +1,0 @@
-package com.korea.user.controller;
-
-import com.korea.user.service.UserService;
-
-public class UserController {
-	
-	private UserService service;
-}
