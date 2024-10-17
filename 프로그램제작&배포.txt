@@ -1,0 +1,145 @@
+프로젝트
+
+기획(주제선정)
+플로우차트 설계
+ui구성(피그마로 설계)
+기능별 흐름 설계
+DB설계(erd설계 erdcloud) -> Enitiy클래스 설계를 잘 하면 된다.
+---------------------------------------------------------------------------------------------------------------
+1. 배포하기위한 프로그램을 만든다.
+
+2. 프로그램을 빌드한다.
+2-1. 스프링부트의 경우 windowsShell들어가서 power gradlew가 있는 폴더로 경로를 잡고 ./gradlew build를 한다.
+2-2. 리액트의 경우 npm run build를 한다.(설정파일과 묶어서 .zip로압축한다.)
+
+3. ed 환경을 만든다.
+3-1. 백엔드 환경을 만든다.
+ㄴ 빌드된 .jar 파일을 배포한다.
+3-2. 프론트엔드 환경을 만든다.
+ㄴ 빌드된 압축파일을 배포한다.
+
+4. 오류나면 로그를 확인한다.
+
+5. 코드를 수정한다 -> 다시 build한다 -> 다시 배포한다.
+---------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+10.17
+pyhton.org 최신버전 설치
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+cmd
+pyhton --version 버전확인
+pip --version 버전확인
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+https://awscli.amazonaws.com/AWSCLIV2.msi 인터넷 주소창에 치고 다운받기
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+cmd
+aws --version 버전확인
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+aws
+IAM 사용자생성
+1단계 사용자이름 설정 cli-user
+2단계 직접 정책 연결 선택
+AdministratorAccess 선택
+생성하기
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+cli-user 엑세스키 만들기
+Command Line Interface(CLI) 선택 동의후 다음
+엑세스키 만들기
+엑세스키 저장 AKIA4ZPZVLBURBNDFDFU
+비밀 엑세스키 저장 Ux8MSELSPsp9uWO1iToILw29xgxQZLhaoAPRPafn
+완료
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+cmd
+aws configure
+AWS Access Key ID [None]:엑세스키 복붙
+AWS Secret Access Key [None]:비밀 엑세서키 복붙
+Default region name [None]: ap-northeast-2
+Default output format [None]: json
+pip install awsebcli --upgrade --user
+eb --version
+'eb'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+ㄴ환경변수 -> 시스템변수에 Path 클릭 -> 새로만들기(%USERPROFILE%\AppData\Roaming\Python\Python313\Scripts)
+eb --version 깔렸는지 확인
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Windows PowerShell
+cd D:\1.JYH\4.Spring\work\demo백엔드폴드로 이동)
+eb init
+10) ap-northeast-2 : Asia Pacific (Seoul)
+3) [ Create new Application ] (default is 3): 그냥 엔터치면 3번
+springboot-demo
+5) Java
+2) Corretto 17 running on 64bit Amazon Linux 2023
+N
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+demo 폴더가보면 .elasticbeanstalk 폴더 생성되어있다.
+config.yml열고 맨밑에 추가
+deploy:
+  artifact: build/libs/demo-0.0.1-SNAPSHOT.jar (백엔드 build파일이름)
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Windows PowerShell
+eb use Springboot-developer-env
+eb deploy(배포)
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------
+엔드포인트 - awseb-e-hxtxmupdra-stack-awsebrdsdatabase-gshdggbkpkxx.crmuok22qokh.ap-northeast-2.rds.amazonaws.com
+-------------------------------------------------------------------------------------------------------------------
+---스프링 build 배포하기---
+PowerShell
+이클립스 경로이동
+./gradlew clean build
+build -> libs -> demo-0.0.1-SNAPSHOT 배포
+
+---리액트 build 배포하기---
+터미널 npm run build
+build 압축 배포
+-----------------------------------------------------------------------------------------------------------------
+D:\1.JYH\4.Spring\work\todo-react-app\bbb\.platform\nginx\conf.d\elasticbeanstalk 경로
+00_application 파일 비쥬스튜디오로 오픈
+
+root /var/app/current;		
+---nginx가 웹 루트 폴더를 설정하는 부분---
+---var/app/current;---
+
+---js,css,html파일에 대한 요청을 처리---
+location ~* \.(js|css|html)$ {
+    add_header Cache-Control "no-cache, no-store, must-revalidate";
+}
+
+---최상위 경로 /에서 들어오는 모든 요청을 처리하는 블록---
+location / {
+    index index.html;
+    try_files $uri $uri/ /index.html;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
