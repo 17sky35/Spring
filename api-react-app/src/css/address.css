@@ -1,0 +1,50 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 각 필드 사이 간격 */
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px; /* 우편번호와 버튼 사이 간격 */
+}
+
+.form-row input[type="text"] {
+  flex: 1; /* 입력 필드가 버튼과 같이 가로로 차지하게 */
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* 패딩 포함 */
+}
+
+input[type="button"] {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 120px; /* 버튼의 최소 너비 */
+}
+
+input[type="button"]:hover {
+  background-color: #e0e0e0;
+}
+
+.form-row.split {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row.split input {
+  flex: 1;
+}
+
+.form-row.split input:last-child {
+  flex: 0.4; /* 마지막 필드 크기 조금 줄임 */
+}
