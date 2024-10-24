@@ -29,6 +29,7 @@ public class UserController {
 	
 	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
+	
 	//회원가입 -> 데이터베이스에 데이터를 추가
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO){
@@ -70,6 +71,8 @@ public class UserController {
 				userDTO.getUsername(),
 				userDTO.getPassword(),
 				passwordEncoder);
+		
+		 
 		
 		//사용자가 존재한다면
 		if(user != null) {

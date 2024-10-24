@@ -1,9 +1,8 @@
 package com.example.demo.di4;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.example.demo.qualifier.Computer1;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

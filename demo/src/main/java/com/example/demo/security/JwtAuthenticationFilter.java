@@ -44,7 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 			if(token != null && !token.equalsIgnoreCase("null")) {
 				//토큰을 통해 userId를 반환받는다.
 				//validateAndeGetUserId(token)
-				//검증을하고  userId를 반환
+				//검증을하고 userId를 반환
 				String userId = tokenProvider.validateAndeGetUserId(token);
 				log.info("Authenticated user ID : " + userId);
 				

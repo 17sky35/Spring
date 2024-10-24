@@ -1,0 +1,117 @@
+http 연결 -> 평문으로 데이터를 보냄
+ㄴ 포트 80번, 뒤에 포트를 따로 붙히지 않으면 자동으로 80번으로 할당
+https 연결 -> 암호화를 해서 보낸다.
+ㄴ 포트 443번, 뒤에 포트를 따로 붙히지 않으면 자동으로 443번으로 할당
+ㄴ SSL, TSL과 같은 인증서를 필요로 함 -> AWS는 퍼블릭인증서를 사용했음
+
+1. 사용자가 직접 로그인페이지 요청
+
+2. 사용자가 로그인을 안하고 메인페이지에 접근
+권한이 없기 때문에 우리가 로그인페이지로 강제로 보냄
+유저가 요청을 한것처럼 페이지를 리다이렉트
+
+
+깃허브
+Client ID : Ov23liUvp7MbonVbVz1H
+Client secrets : 03eaf5f90f570503c4ea55972aada44db4307719
+↓
+백엔드에서
+application-dev.yml 작성
+↓
+demo 폴더 -> git bash -> ./gradlew bootRun --args='--spring.profiles.active=dev --server.port=5000'
+
+소셜로그인에서 토큰이 발행되는 부분 소셜로그인을 이용한 인증이 완료된 다음, 즉 OAuth2.0를 이용한 인증이 모두 끝난다음 발행
+
+
+
+
+
+http://localhost:5000/oauth2/authorization/github
+
+
+
+springboot-developer
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDI4qSuxuFtyz7m+9ciOb9zwfXMm5PRIytVRnBNpV1S/+Z36YspsgKKfsfjsOftQdTIy0UjPf2HvXUz7kqwcT8nDJB7xoHTFUmE4MQxq3r5kkB9Plpi0rS1DUegvUU6iez0ymvPV7zGKoP/PZVGS5Z+WcPNbGYIfHQHAP3+fEQeylA9Ze3+KNhJNhtphk6QLfWFwo4W2UehrFMBPmetmeHRjz1IGl+SoKeTmJeLCfXnbdbCBSUXJRWsBNU/9oxNaAfh0pZYqYqtU1QfMyhmlHV6kmTGP8tSvwooTCv9PRWgayQe0vumvDu7vs3AddMiI32epZRJ3L38Jc0KPnBzEn3CaYTWnaL+PUoMeL3m0YN/OyoAc02f4pXe8YT3yeoAYDW27+3siQT1up5s6WirC0IifCq/TwmZhi6MvcUTu6O/ja9rlKIRug0wzre2aJ8JkX3t8PRNQrsSJnGvdWTOkV+YydrzoH0GVjoZMMJ2/HYlwLwziKRDfcu5rQveS5eAlrM= 17sky35@naver.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

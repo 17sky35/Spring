@@ -3,13 +3,16 @@ package com.example.demo.security;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.model.UserEntity;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
-import com.example.demo.model.UserEntity;
 import lombok.extern.slf4j.Slf4j;
 
 //이 TokenProvider 클래스의 역할은 유저의 정보를 받아서 토큰(JWT)을 생성하기
@@ -51,10 +54,28 @@ public class TokenProvider {
 				.setIssuer("demo app") //토큰 발행 주체
 				.setIssuedAt(new Date()) //토큰 발행 날짜
 				.setExpiration(expiryDate) // exp
-				.compact(); //토큰을 . 으로 구분된 하나의 문자열로 만들어준다
-				
-		
+				.compact(); //토큰을 . 으로 구분된 하나의 문자열로 만들어준다		
 	}
+	
+	//Authentication
+	//어플리케이션 내에서 사용자가 누구인지와 그 사용자가 권한을 가졌는지 여부를 나타낸는 객체
+	//Principal : 사용자를 나타내는 정보, 보통 사용자 ID 또는 사용자 객체가 들어간다.
+	public String create(Authentication authentication) {
+		//OAuth2.0 인증을 통해 로그인한 사람의 정보를 나타낸다.
+		ApplicationOAuth2User userPrincipal = (ApplicationOAuth2User)authentication.getPrincipal();
+		Date expiryDate = Date.from(Instant.now().plus(1,ChronoUnit.DAYS));
+				
+		//JWT 토큰 생성
+		return Jwts.builder()
+				.signWith(SignatureAlgorithm.HS512,SECRET_KEY)
+				.setSubject(userPrincipal.getName())//id가 반환됨
+				.setIssuer("demo app") //토큰 발행 주체
+				.setIssuedAt(new Date()) //토큰 발행 날짜
+				.setExpiration(expiryDate) // exp
+				.compact(); //토큰을 . 으로 구분된 하나의 문자열로 만들어준다		
+	}
+	
+	
 	//토큰을 받아서 검증을 하는 메서드
 	public String validateAndeGetUserId(String token) {
 		Claims claims = Jwts.parser()

@@ -62,7 +62,8 @@ public class TodoController {
 
 	@PostMapping //포스트로 요청시 실행
 	public ResponseEntity<?> createTodo(@AuthenticationPrincipal String userId, @RequestBody TodoDTO dto){
-		try {			
+		try {
+			
 			//TodoDTO 객체를 TodoEntity로 변환한다.
 			TodoEntity entity = TodoDTO.toEntity(dto);
 			
@@ -152,7 +153,8 @@ public class TodoController {
 	@DeleteMapping
 	public ResponseEntity<?> deleteTodo(@AuthenticationPrincipal String userId,@RequestBody TodoDTO dto){
 		
-		try {			
+		try {
+			
 			//1. 엔티티로 변경 //DTO -> Entity로 변경해주는 메서드 toEntity
 			TodoEntity entity = TodoDTO.toEntity(dto);
 			//2.임시 유저 아이디 설정

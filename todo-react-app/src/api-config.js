@@ -12,9 +12,9 @@ let backendHost;
 const hostname = window && window.location && window.location.hostname;
 
 if(hostname === "localhost"){
-    backendHost = "http:localhost:5000"
+    backendHost = "http://localhost:5000"
 }else{
-    backendHost = "http://springboot-developer-env.eba-9326gznp.ap-northeast-2.elasticbeanstalk.com"
+    backendHost = "https://api.todo-test-gabia.store"
 }
 
 export const API_BASE_URL = `${backendHost}`
