@@ -1,0 +1,75 @@
+Map	설치 : npm install react-kakao-maps-sdk
+카카오 지도를 생성하고 표시하는 컴포넌트
+지도 자체를 렌더링하고 마커나 인포윈도우를 배치할 수 있다.
+
+주요 prop
+center : {lat,lng} 형태의 객체로 지도의 중심 좌표를 지정 (필수속성)
+style : 지도 컨테이너의 CSS 스타일을 지정 보통 너비와 높이 지정
+onClick : 지도를 클릭했을 때 호출되는 이벤트 핸들러
+클릭된 좌표를 반환
+
+MapInfoWindow
+-마커나 지도위에 정보를 표시하는 윈도우입니다.
+
+주요 prop
+position : 인포윈도우의 위치 좌표
+removable : 닫기 버튼을 활성화할지 여부
+content : 인포윈도우에 표시할 내용
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+네이티브 앱 키	cb5f2ae930d6433dbcea98b123b909ee		Android, iOS SDK에서 API를 호출할 때 사용합니다.
+REST API 키	6f08964d9f8d85fd2c4e3087f44bd7af		JavaScript SDK에서 API를 호출할 때 사용합니다.
+JavaScript 키	6a87901cf7ca9ddc7ad7e3efe43474d7		REST API를 호출할 때 사용합니다.
+Admin 키		0860574e290e91eda3c51dabacd00e98		모든 권한을 갖고 있는 키입니다. 노출이 되지 않도록 주의가 필요합니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

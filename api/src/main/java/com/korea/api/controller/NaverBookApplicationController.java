@@ -40,4 +40,16 @@ public class NaverBookApplicationController {
 				.bodyToFlux(String.class);//응답을 Flux로 받아 문자열로 변환
 	}
 	
+	@GetMapping("/api/news")
+	public Flux<String> searchNews(@RequestParam String query){
+		return webClient.get()
+				.uri(uriBuilder -> uriBuilder.path("/news.json")
+						.queryParam("query", query)
+						.build())
+				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+				.header("X-Naver-Client-Id", clientId)
+				.header("X-Naver-Client-Secret", clientSecret)
+				.retrieve() //요청 보내기
+				.bodyToFlux(String.class);//응답을 Flux로 받아 문자열로 변환
+	}
 }

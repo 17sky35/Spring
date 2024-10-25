@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDaumPostcodePopup} from 'react-daum-postcode';
 import '../css/address.css'
+import MyMap3 from './Map3';
 
 const PostcodeComponent = () => {
   const [postcode, setPostcode] = useState(''); // 우편번호를 저장할 state
@@ -101,6 +102,7 @@ const PostcodeComponent = () => {
           readOnly
         />                              
       </div>
+      <MyMap3/>
     </div>
   );
 };
