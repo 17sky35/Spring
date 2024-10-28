@@ -9,6 +9,10 @@ function BookSearch(){
     const [error,setError] = useState(null);
 
     //네이버 도서 검색 API 호출 함수
+    //네이버 서버로 접근하는 주소가 주어진다.
+    //CORS제한이 걸려서 우리의 브라우저가 응답을 못받는다.
+    //우리의 서버에서 네이버서버로 요청을 보낸다.
+    //서버 -> 서버 CORS가 안걸린다.
     const searchBooks = () => {
 
         try {

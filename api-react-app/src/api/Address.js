@@ -56,7 +56,7 @@ const PostcodeComponent = () => {
 
         // 상세주소 입력 필드로 포커스를 이동
         document.getElementById('sample6_detailAddress').focus();
-        }
+      }
 
         // 팝업을 열고 완료 시 handleComplete 함수 실행
         const handleClick = () => {
