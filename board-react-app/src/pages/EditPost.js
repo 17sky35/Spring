@@ -6,35 +6,50 @@ import CustomButton from "../components/CustomButton";
 import axios from "axios";
 
 const EditPost = () => {
-
     const navigate = useNavigate();
-    const[post,setPost]=useState({author:"",title:"",content:""});
     const {id} = useParams();
+    const [post, setPost] = useState({})
     const {boardList,setBoardList} = useContext(BoardContext);
-    const {author,title,content} = post;
 
+    const {author, title, content} = post;
 
-    //수정 완료 버튼
-    const updatePost = () => {
-        const response = axios(`http://localhost:9090/api/board/madify/${id}`,{
-            headers:{"Content-Type":"application/json"},
-            data:JSON.stringify(post),
-            method:"put"
-        })
+    useEffect(() => {
+       //수정한 내용을 데이터베이스에 저장
+       const getBoardData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:9090/api/board/get/${id}`);
+          setPost(response.data.data[0]); // 데이터 상태를 업데이트
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      
+      getBoardData();
+    },[])
+
+    const backToPost = () => {
         navigate("/post/"+id);
     }
-    //수정 취소 버튼
-    const backToPost = () => {navigate("/post/"+id)}
-    //useEffect
-    useEffect(async ()=>{
-        //수정한 내용을 데이터베이스에 저장
-        try {
-            const response = await axios.get("http://localhost:9090/api/board/all")
-            setPost(response.data.data);
-        } catch (error) {
 
+    const updatePost = async() => {
+        const response = await axios(`http://localhost:9090/api/board/modify/${id}`,{
+            headers:{
+                "Content-Type":"application/json"
+            },
+            data: JSON.stringify(post),
+            method:'put',
+        })
+        console.log(response);
+
+        if(response.data){
+            alert('수정이 완료되었습니다.');
+            navigate("/post/"+id);
+        } else {
+            alert('수정에 실패하였습니다.');
         }
-    },[])
+        
+    }
+
 
     return(
         <div>

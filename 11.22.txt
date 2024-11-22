@@ -18,7 +18,7 @@ React -> Springboot -> 외부 api로 통신
 
 
 
-
+expo init react-native-board
 
 
 
