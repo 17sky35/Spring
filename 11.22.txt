@@ -1,0 +1,74 @@
+CORS
+Cross Origin Resource Sharing
+
+Origin : 출처
+원칙적으로는 하나의 출처에서만 데이터를 교환하는것이 가능하다.
+
+react : localhost:3000
+springboot : localhost:9090/api/board/all
+
+브라우저를 안거치면 되지 않나?
+React -> Springboot -> 외부 api로 통신
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
