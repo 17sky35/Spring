@@ -40,22 +40,16 @@ public class BoardService {
 	}
 	
 	//수정
-	public BoardDTO updateBoard(BoardDTO dto, Long id) {
-		Optional<BoardEntity> original = repository.findById(id);
-		if(original.isPresent()) {
-			BoardEntity entity = original.get();
-			entity.setId(dto.getId());
-			entity.setTitle(dto.getTitle());
-			entity.setAuthor(dto.getAuthor());
-			entity.setContent(dto.getContent());
-			repository.save(entity);
-			return convertDTO(entity);
-		}
-		return null;
+	public BoardDTO updatePost(BoardDTO dto, Long id) {
+		BoardEntity existingBoard = repository.findById(id).orElseThrow(()->new RuntimeException("게시글을 찾을수없습니다."));
+		existingBoard.setTitle(dto.getTitle());
+		existingBoard.setAuthor(dto.getAuthor());
+		existingBoard.setContent(dto.getContent());
+		return convertDTO(repository.save(existingBoard));
 	}
 	
 	//삭제
-	public boolean deleteBoard(Long id) {
+	public boolean deletePost(Long id) {
 		Optional<BoardEntity> original = repository.findById(id);
 		if(original.isPresent()) {
 			repository.deleteById(id);

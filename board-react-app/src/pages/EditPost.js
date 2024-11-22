@@ -3,7 +3,7 @@ import { BoardContext } from "../context/BoardContext";
 import { useParams, useNavigate } from "react-router-dom";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
-
+import axios from "axios";
 
 const EditPost = () => {
 
@@ -16,21 +16,24 @@ const EditPost = () => {
 
     //수정 완료 버튼
     const updatePost = () => {
-        const newBoardList = boardList.map((item)=>{
-            if(item.id === parseInt(id)){
-                return{...item,...post};
-            }
-            return item;
-        })    
-
-        setBoardList(newBoardList);
+        const response = axios(`http://localhost:9090/api/board/madify/${id}`,{
+            headers:{"Content-Type":"application/json"},
+            data:JSON.stringify(post),
+            method:"put"
+        })
         navigate("/post/"+id);
     }
     //수정 취소 버튼
     const backToPost = () => {navigate("/post/"+id)}
     //useEffect
-    useEffect(()=>{
+    useEffect(async ()=>{
         //수정한 내용을 데이터베이스에 저장
+        try {
+            const response = await axios.get("http://localhost:9090/api/board/all")
+            setPost(response.data.data);
+        } catch (error) {
+
+        }
     },[])
 
     return(

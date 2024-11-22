@@ -53,17 +53,17 @@ public class BoardController {
 	
 	//수정
 	@PutMapping("/modify/{id}")
-	public ResponseEntity<?> updateBoard(@PathVariable Long id, @RequestBody BoardDTO dto){
-		BoardDTO updateDto = service.updateBoard(dto, id);
+	public boolean updatePost(@PathVariable Long id, @RequestBody BoardDTO dto){
+		BoardDTO updateDto = service.updatePost(dto, id);
 		if(updateDto != null) {
-			return ResponseEntity.ok().body(updateDto);
+			return true;
 		}
-		return ResponseEntity.badRequest().body("업데이트 실패!!");
+		return false;
 	}
 	
 	//삭제
 	@DeleteMapping("/delete/{id}")
-	public boolean deleteBoard(@PathVariable Long id){
-		return service.deleteBoard(id);
+	public boolean deletePost(@PathVariable Long id){
+		return service.deletePost(id);
 	}		
 }
