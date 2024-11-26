@@ -29,7 +29,7 @@ npm install @react-navigation/native react-native-screens react-native-safe-area
 헤더를 가운데 정렬
 헤더타이틀을 흰색으로 만들기
 
-글쓰기 헤더의 왼쪽에 <AntDesign name="close" size={24} colo="white" />
+글쓰기 헤더의 왼쪽에 <AntDesign name="close" size={24} color="white" />
 
 글쓰기 헤더의 오른쪽에 "등록"이라는 문자열을 가진 버튼
 
